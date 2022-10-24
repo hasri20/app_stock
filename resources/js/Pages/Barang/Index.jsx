@@ -14,8 +14,6 @@ export default function Index({ auth, barang, jenis_barang }) {
         hargaBeli: "",
     });
 
-    console.log(barang);
-
     const submit = (e) => {
         e.preventDefault();
         post(route("barang.store"), { onSuccess: () => reset() });
