@@ -3,6 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/inertia-react";
 
 export default function Index({ auth, list_penjualan, summary }) {
+    console.log(summary);
     return (
         <AuthenticatedLayout auth={auth}>
             <Head title="Report Penjualan" />
@@ -71,7 +72,7 @@ export default function Index({ auth, list_penjualan, summary }) {
                                 return (
                                     <tr
                                         className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                                        key={barang.id}
+                                        key={barang.barang_id}
                                     >
                                         <td className="py-4 px-6">
                                             {barang.nama_barang}

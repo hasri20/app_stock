@@ -28,7 +28,7 @@ class PenjualanController extends Controller
     {
         return Inertia::render('Laporan/Index', [
             'list_penjualan' => DB::table('penjualans')->select('penjualans.*', 'barangs.nama_barang')->join('barangs', 'penjualans.barang_id', '=', 'barangs.id')->get(),
-            'summary' => DB::table('penjualans')->select('penjualans.*','barangs.nama_barang','barangs.harga_jual','barangs.harga_beli', DB::raw('sum(penjualans.jumlah) as total'))->groupBy('penjualans.barang_id')->join('barangs', 'penjualans.barang_id', '=', 'barangs.id')->get()
+            'summary' => DB::table('penjualans')->select('penjualans.barang_id','barangs.nama_barang','barangs.harga_jual','barangs.harga_beli', DB::raw('sum(penjualans.jumlah) as total'))->groupBy('penjualans.barang_id','barangs.nama_barang','barangs.harga_jual','barangs.harga_beli' )->join('barangs', 'penjualans.barang_id', '=', 'barangs.id')->get()
         ]);
     }
 
