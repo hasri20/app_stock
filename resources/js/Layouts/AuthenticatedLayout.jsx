@@ -34,6 +34,18 @@ export default function Authenticated({ auth, header, children }) {
                                 >
                                     Barang
                                 </NavLink>
+                                <NavLink
+                                    href={route("penjualan.index")}
+                                    active={route().current("penjualan.index")}
+                                >
+                                    Penjualan
+                                </NavLink>
+                                <NavLink
+                                    href={route("laporan")}
+                                    active={route().current("laporan")}
+                                >
+                                    Laporan
+                                </NavLink>
                             </div>
                         </div>
 
@@ -138,6 +150,18 @@ export default function Authenticated({ auth, header, children }) {
                             active={route().current("barang.index")}
                         >
                             Barang
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("penjualan.index")}
+                            active={route().current("penjualan.index")}
+                        >
+                            Penjualan
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("laporan")}
+                            active={route().current("laporan")}
+                        >
+                            Laporan
                         </ResponsiveNavLink>
                     </div>
 

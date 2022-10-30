@@ -3,6 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import { useForm, Head } from "@inertiajs/inertia-react";
+import { Link } from "@inertiajs/inertia-react";
 
 export default function Index({ auth, barang, jenis_barang }) {
     const { data, setData, post, processing, reset, errors } = useForm({
@@ -75,10 +76,15 @@ export default function Index({ auth, barang, jenis_barang }) {
                                             {data.harga_jual}
                                         </td>
                                         <td>
-                                            <button className="mx-2">
+                                            <Link
+                                                className="mx-2"
+                                                href={route(
+                                                    "barang.edit",
+                                                    data.id
+                                                )}
+                                            >
                                                 Edit
-                                            </button>
-                                            <button>Delete</button>
+                                            </Link>
                                         </td>
                                     </tr>
                                 );
@@ -223,7 +229,7 @@ export default function Index({ auth, barang, jenis_barang }) {
                         </div>
 
                         <PrimaryButton className="mt-4" disabled={processing}>
-                            Register
+                            Input
                         </PrimaryButton>
                     </form>
                 </div>

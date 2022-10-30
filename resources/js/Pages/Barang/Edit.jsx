@@ -4,30 +4,28 @@ import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import { useForm, Head } from "@inertiajs/inertia-react";
 
-export default function Index({ auth, barang }) {
-    const { data, setData, post, processing, reset, errors } = useForm({
-        namaBarang: "",
-        deskripsi: "",
-        jenisBarang: "",
-        stokBarang: "",
-        hargaJual: "",
-        hargaBeli: "",
+export default function Index({ auth, barang, jenis_barang }) {
+    const { data, setData, put, processing, reset, errors } = useForm({
+        namaBarang: barang.nama_barang,
+        deskripsi: barang.deskripsi,
+        jenisBarang: barang.jenis_barang_id,
+        stokBarang: barang.stok_barang,
+        hargaJual: barang.harga_jual,
+        hargaBeli: barang.harga_beli,
     });
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("barang.store"), { onSuccess: () => reset() });
+        put(route("barang.update", barang.id), { onSuccess: () => reset() });
     };
 
     return (
         <AuthenticatedLayout auth={auth}>
-            <Head title="Barang" />
+            <Head title="Barang - Edit" />
 
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-12">
                 <div className="p-6 bg-white border-b border-gray-200">
-                    <h1 className="text-2xl font-bold mb-4">
-                        Input Stock Barang
-                    </h1>
+                    <h1 className="text-2xl font-bold mb-4">Edit Barang</h1>
                     <form onSubmit={submit}>
                         <InputError message={errors.message} className="mt-2" />
                         <div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -159,7 +157,7 @@ export default function Index({ auth, barang }) {
                         </div>
 
                         <PrimaryButton className="mt-4" disabled={processing}>
-                            Register
+                            Update
                         </PrimaryButton>
                     </form>
                 </div>

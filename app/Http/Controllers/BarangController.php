@@ -24,16 +24,6 @@ class BarangController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -65,17 +55,6 @@ class BarangController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Barang $barang)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Barang  $barang
@@ -83,8 +62,8 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        return Inertia::render('Barang/Index', [
-            'barang' => DB::table('barangs')->join('jenis_barangs', 'barangs.jenis_barang_id', '=', 'jenis_barangs.id')->get(),
+        return Inertia::render('Barang/Edit', [
+            'barang' => DB::table('barangs')->where('id', $barang->id)->first(),
             'jenis_barang' => JenisBarang::all()
         ]);
     }
@@ -98,17 +77,15 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        //
-    }
+        
+        $barang->nama_barang = $request->namaBarang;
+        $barang->deskripsi = $request->deskripsi;
+        $barang->jenis_barang_id = $request->jenisBarang;
+        $barang->stok_barang = $request->stokBarang;
+        $barang->harga_jual = $request->hargaJual;
+        $barang->harga_beli = $request->hargaBeli;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Barang $barang)
-    {
-        //
+        $barang->save();
+        return redirect(route('barang.index'));
     }
 }
