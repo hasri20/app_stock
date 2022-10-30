@@ -3,7 +3,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/inertia-react";
 
 export default function Index({ auth, list_penjualan, summary }) {
-    console.log(summary);
     return (
         <AuthenticatedLayout auth={auth}>
             <Head title="Report Penjualan" />
